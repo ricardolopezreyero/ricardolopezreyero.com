@@ -20,10 +20,12 @@
     }
   ],
   "r2_buckets": [{ "binding": "MEDIOS", "bucket_name": "ricardolopezreyero-medios" }],
-  // Los dominios se conectan cuando la zona ricardolopezreyero.com esté activa en Cloudflare:
-  // "routes": [
-  //   { "pattern": "ricardolopezreyero.com", "custom_domain": true },
-  //   { "pattern": "www.ricardolopezreyero.com", "custom_domain": true }
-  // ],
+  // El dominio entra por rutas sobre los registros DNS con proxy (nube naranja) de la zona.
+  // Mientras la ruta cubra /*, el Worker responde todo y la IP del registro A nunca se consulta.
+  "routes": [
+    { "pattern": "ricardolopezreyero.com/*", "zone_name": "ricardolopezreyero.com" },
+    { "pattern": "www.ricardolopezreyero.com/*", "zone_name": "ricardolopezreyero.com" }
+  ],
+  "workers_dev": true,
   "observability": { "enabled": true }
 }
