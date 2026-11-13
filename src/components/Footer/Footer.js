@@ -64,7 +64,7 @@ const Footer = ({ footerRef }) => {
             <FormattedMessage
               id="footer.derechos"
               values={{
-                link2: <a href="https://ingenieridigital.mx" className={stylesFooter.enlace}>Aviso de privacidad</a>,
+                link2: <a href="https://ingenieriadigital.mx" className={stylesFooter.enlace}>Aviso de privacidad</a>,
               }}
             />
           </p>
@@ -77,7 +77,7 @@ const Footer = ({ footerRef }) => {
             <FormattedMessage
               id="footer.madeby"
               values={{
-                link: <a href="https://ingenieridigital.mx" className={stylesFooter.enlace}>Ingenieria Digital</a>,
+                link: <a href="https://ingenieriadigital.mx" className={stylesFooter.enlace}>Ingenieria Digital</a>,
               }}
             />
           </p>

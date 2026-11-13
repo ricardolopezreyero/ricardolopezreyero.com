@@ -82,7 +82,7 @@ const Introduccion = () => {
               <FormattedMessage
                 id="introduction.description.contenido"
                 values={{
-                  link1: <a href="https://ingenieridigital.mx" className={stylesIntroduction.enlace}>IngenieriaDigital.mx</a>,
+                  link1: <a href="https://ingenieriadigital.mx" className={stylesIntroduction.enlace}>IngenieriaDigital.mx</a>,
                   link2: <a href="https://superleads.mx" className={stylesIntroduction.enlace}>SuperLeads.mx</a>,
                   strong: (chunks) => <strong>{chunks}</strong>,
                   br: <br />
