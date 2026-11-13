@@ -1,5 +1,5 @@
 ; ricardolopezreyero.com · zona DNS en Cloudflare (nameservers josephine / luke) · RLR
-; Estado al 13-nov-2026, después de la mudanza y la limpieza. Son 13 registros.
+; Estado al 13-nov-2026, después de la mudanza y la limpieza. Son 14 registros.
 ; Los cambios de DNS se hacen en el panel de Cloudflare; este archivo es la referencia.
 $ORIGIN ricardolopezreyero.com.
 $TTL 300
@@ -24,6 +24,10 @@ escritos            IN CNAME sites.ludicrous.cloud.
 ; y se pueden quitar cuando se cancele) y verificación de Google
 @                   IN TXT   "v=spf1 include:_spf.google.com ip4:15.204.101.117 include:relay.mailchannels.net ip4:173.255.252.249 +a +mx ~all"
 @                   IN TXT   "google-site-verification=Xb0zQn0BBX2m9B6PmUYKEqqTlamlyDp5_rrff1fOEVw"
+
+; DMARC en modo de observación (no bloquea nada). Para subirlo a quarantine/reject hay que
+; activar antes la firma DKIM de Google en Google Admin; hoy Google solo pasa por SPF.
+_dmarc              IN TXT   "v=DMARC1; p=none"
 
 ; DKIM de Mailchimp
 k2._domainkey       IN CNAME dkim2.mcsv.net.
