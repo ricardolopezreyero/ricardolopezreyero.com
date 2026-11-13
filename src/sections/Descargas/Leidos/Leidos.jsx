@@ -5,7 +5,7 @@ import './Leidos.scss'
 import Download from '@mui/icons-material/Download'
 
 const Leidos = ({ id }) => {
-    let pdfLeidos = require('../../../assets/docs/Libros Leídos y recomendaciones Ricardo López Reyero 2024.pdf')
+    let pdfLeidos = require('../../../pesados').pdfLibrosLeidos
     let leidos = require('../../../assets/img/libros_leidos_Ricardo_Lopez_Reyero.png')
 
   return (

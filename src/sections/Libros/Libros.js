@@ -20,7 +20,7 @@ const Libros = () => {
     let MundoFeliz = require("../../assets/img/Ricardo_Lopez_Rayero_Books_Un_mundo_feliz.png");
     let NaveIntra = require("../../assets/img/Ricardo_Lopez_Rayero_Books_La_nave_intra.png");
     let Offers = require('../../assets/img/Ricardo_Lopez_Rayero_Books_100M_offers.png');
-    let pdflibros = require('../../assets/docs/Libros Leídos y recomendaciones Ricardo López Reyero 2024.pdf')
+    let pdflibros = require('../../pesados').pdfLibrosLeidos
 
     return (
         <div className={stylesLibros.librosSection}>

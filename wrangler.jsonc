@@ -1,0 +1,29 @@
+{
+  // ricardolopezreyero.com · sitio personal (React) servido desde Cloudflare · Ricardo López Reyero (RLR)
+  // El sitio compilado (./build) lo entrega Cloudflare directo. El Worker solo atiende
+  // /api/* (contador de visitas, D1) y /pesados/* (archivos de más de 25 MB, R2).
+  "name": "ricardolopezreyero-com",
+  "account_id": "93695b987a7460c681c06ca4df901ef4",
+  "main": "worker/index.js",
+  "compatibility_date": "2026-10-01",
+  "assets": {
+    "directory": "./build",
+    "binding": "ASSETS",
+    "not_found_handling": "single-page-application",
+    "run_worker_first": ["/api/*", "/pesados/*"]
+  },
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "ricardolopezreyero-visitas",
+      "database_id": "fc0e727a-952a-45c1-ba95-9ad9393cacd6"
+    }
+  ],
+  "r2_buckets": [{ "binding": "MEDIOS", "bucket_name": "ricardolopezreyero-medios" }],
+  // Los dominios se conectan cuando la zona ricardolopezreyero.com esté activa en Cloudflare:
+  // "routes": [
+  //   { "pattern": "ricardolopezreyero.com", "custom_domain": true },
+  //   { "pattern": "www.ricardolopezreyero.com", "custom_domain": true }
+  // ],
+  "observability": { "enabled": true }
+}
