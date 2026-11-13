@@ -12,6 +12,8 @@ Cloudflare. Diseño y desarrollo original: Grecia ([grecia-prog/Ricardo-Lopez-Re
 | Sitio (páginas, imágenes y documentos de hasta 25 MB) | `src/` y `public/` → se compila a `build/` y lo sirve Cloudflare |
 | Contador de visitas del pie (`/api/visit-counter.php`) | `worker/index.js` + base D1 `ricardolopezreyero-visitas` |
 | Audios y archivos de más de 25 MB (`/pesados/…`) | carpeta `pesados/` → bucket R2 `ricardolopezreyero-medios` |
+| Reproductor de audios (±10 s, velocidad, repetir, guardar para oír sin internet) | `src/sections/Descargas/Audios/` |
+| Página disponible sin internet (service worker) | `public/sw.js`, registrado en `src/index.js` |
 | Configuración de Cloudflare | `wrangler.jsonc` (Worker `ricardolopezreyero-com`) |
 
 Rutas del sitio: `/`, `/descargas`, `/documentos-importantes`, `/en`, `/en/descargas`.

@@ -1,38 +1,428 @@
-.custom-audio {
-    width: 90%;
-    background-color: #9da2ef00;
-    border: none;
-    outline: none;
-    margin: 30px 0;
+// RLR · Audios de Descargas · Ricardo López Reyero
+// Colores de la casa: lila #9DA2EF, lila fuerte #585DCC, tinta #232E35, marino #070C28.
+$lila: #9da2ef;
+$lila-fuerte: #585dcc;
+$tinta: #232e35;
+$gris: #5b6770;
+$borde: #e3e5f6;
+
+.rlr-audios {
+  width: 90%;
+  max-width: 1204px;
+  margin: 0 auto;
+  font-family: 'Red Hat Display', sans-serif;
+  color: $tinta;
+
+  &__cabecera {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 8px 24px;
+
+    h2 { margin: 0; }
   }
 
-  .rhap_container {
-    background-color: #9DA2EF !important; /* Color de fondo del reproductor */
-    margin: 30px 0 0;
+  &__resumen {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin: 0;
+    padding: 6px 12px;
+    border-radius: 999px;
+    background: #f1f2fd;
+    color: $lila-fuerte;
+    font-size: 14px;
+    font-weight: 600;
   }
-  
-  .rhap_play-pause-button,
-  .rhap_forward-button,
-  .rhap_rewind-button,
-  .rhap_volume-button,
-  .rhap_repeat-button,
-  .rhap_main-controls-button {
-    color: #fff !important; /* Color de los botones, incluidos los tres puntos */
+
+  &__bajada {
+    margin: 10px 0 0;
+    max-width: 62ch;
+    color: $gris;
+    font-size: 16px;
+    line-height: 1.5;
   }
-  
-  .rhap_time {
-    color: #fff !important; /* Cambia el color de los números de tiempo a blanco */
-  }
-  
-  .rhap_progress-bar-show-download {
-    background-color: #e4e4e4 !important; /* Color de la barra de progreso */
-  }
-  
-  .rhap_main-controls-button {
-    color: #fff !important; /* Color de los botones de reproducción */
-  }
-  @media (max-width: 900px){
-    .rhap_container {
-      margin: 10px 0 0;
+
+  &__nota {
+    margin: 12px 0 0;
+    padding: 10px 14px;
+    border-radius: 8px;
+    background: #f1f2fd;
+    color: $tinta;
+    font-size: 14px;
+    line-height: 1.45;
+
+    &--alerta {
+      background: #fff4e5;
+      color: #6b3d00;
     }
   }
+
+  &__rejilla {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 40px 32px;
+    margin-top: 40px;
+  }
+}
+
+.rlr-audio {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  border: 1px solid $borde;
+  border-radius: 14px;
+  background: #fff;
+  overflow: hidden;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+
+  &--actual {
+    border-color: $lila;
+    box-shadow: 0 10px 30px rgba(88, 93, 204, 0.18);
+  }
+
+  &--apagado {
+    opacity: 0.55;
+  }
+
+  &__portada {
+    position: relative;
+    background: #f1f2fd;
+
+    // Las portadas traen el título escrito abajo; se muestra solo la ilustración de arriba,
+    // porque el título ya va en texto en la tarjeta.
+    img {
+      display: block;
+      width: 100%;
+      height: auto;
+      aspect-ratio: 16 / 15;
+      object-fit: cover;
+      object-position: top center;
+    }
+  }
+
+  &__sello {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 4px 10px;
+    border-radius: 999px;
+    background: rgba(7, 12, 40, 0.86);
+    color: #fff;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+  }
+
+  &__cuerpo {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    padding: 16px 16px 18px;
+    min-width: 0;
+  }
+
+  &__titulo {
+    margin: 0;
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 1.25;
+    color: $tinta;
+  }
+
+  &__datos {
+    margin: 0 0 6px;
+    font-size: 14px;
+    color: $gris;
+  }
+
+  // Barra de avance: la parte recorrida se pinta con --avance
+  &__barra {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 100%;
+    height: 22px;
+    margin: 0;
+    background: transparent;
+    cursor: pointer;
+
+    &:disabled { cursor: not-allowed; }
+
+    &::-webkit-slider-runnable-track {
+      height: 6px;
+      border-radius: 999px;
+      background: linear-gradient(to right, $lila-fuerte var(--avance, 0%), $borde var(--avance, 0%));
+    }
+    &::-moz-range-track {
+      height: 6px;
+      border-radius: 999px;
+      background: $borde;
+    }
+    &::-moz-range-progress {
+      height: 6px;
+      border-radius: 999px;
+      background: $lila-fuerte;
+    }
+    &::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      width: 16px;
+      height: 16px;
+      margin-top: -5px;
+      border: 0;
+      border-radius: 50%;
+      background: $lila-fuerte;
+      box-shadow: 0 1px 4px rgba(7, 12, 40, 0.3);
+    }
+    &::-moz-range-thumb {
+      width: 16px;
+      height: 16px;
+      border: 0;
+      border-radius: 50%;
+      background: $lila-fuerte;
+    }
+    &:focus-visible {
+      outline: 2px solid $lila-fuerte;
+      outline-offset: 4px;
+      border-radius: 6px;
+    }
+  }
+
+  &__tiempos {
+    display: flex;
+    justify-content: space-between;
+    font-size: 13px;
+    font-variant-numeric: tabular-nums;
+    color: $gris;
+  }
+
+  &__controles {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 4px;
+    margin-top: 6px;
+  }
+
+  &__boton,
+  &__chico {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: 0;
+    background: transparent;
+    color: $tinta;
+    cursor: pointer;
+    font-family: inherit;
+    transition: background-color 0.15s ease, color 0.15s ease, transform 0.1s ease;
+
+    &:disabled { cursor: not-allowed; opacity: 0.5; }
+    &:focus-visible { outline: 2px solid $lila-fuerte; outline-offset: 2px; }
+    &:active:not(:disabled) { transform: scale(0.94); }
+  }
+
+  &__boton {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+
+    svg { font-size: 30px; }
+    &:hover:not(:disabled) { background: #f1f2fd; }
+
+    &--principal {
+      width: 60px;
+      height: 60px;
+      background: $lila-fuerte;
+      color: #fff;
+
+      svg { font-size: 36px; }
+      &:hover:not(:disabled) { background: #4348b3; }
+    }
+  }
+
+  &__chico {
+    min-width: 44px;
+    height: 44px;
+    padding: 0 6px;
+    border-radius: 10px;
+    color: $gris;
+
+    &:hover:not(:disabled) { background: #f1f2fd; color: $tinta; }
+
+    &--texto {
+      font-size: 14px;
+      font-weight: 700;
+      font-variant-numeric: tabular-nums;
+    }
+
+    &--activo {
+      background: #e7e8fb;
+      color: $lila-fuerte;
+    }
+  }
+
+  &__guardar {
+    margin-top: 12px;
+    padding-top: 12px;
+    border-top: 1px solid $borde;
+    font-size: 14px;
+  }
+
+  &__guardarBoton {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: 100%;
+    min-height: 44px;
+    padding: 8px 12px;
+    border: 1px solid $lila;
+    border-radius: 10px;
+    background: #fff;
+    color: $lila-fuerte;
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.15s ease, color 0.15s ease;
+
+    &:hover:not(:disabled) { background: $lila-fuerte; border-color: $lila-fuerte; color: #fff; }
+    &:disabled { cursor: not-allowed; opacity: 0.5; }
+    &:focus-visible { outline: 2px solid $lila-fuerte; outline-offset: 2px; }
+  }
+
+  &__fila {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    min-height: 44px;
+    color: $gris;
+
+    span {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    &--listo span {
+      color: #1c7c54;
+      font-weight: 600;
+    }
+  }
+
+  &__liga {
+    min-height: 44px;
+    padding: 0 4px;
+    border: 0;
+    background: transparent;
+    color: $gris;
+    font-family: inherit;
+    font-size: 14px;
+    text-decoration: underline;
+    cursor: pointer;
+
+    &:hover { color: $tinta; }
+    &:focus-visible { outline: 2px solid $lila-fuerte; outline-offset: 2px; border-radius: 4px; }
+  }
+
+  &__progreso {
+    height: 6px;
+    border-radius: 999px;
+    background: $borde;
+    overflow: hidden;
+
+    span {
+      display: block;
+      height: 100%;
+      border-radius: 999px;
+      background: $lila-fuerte;
+      transition: width 0.2s linear;
+    }
+  }
+}
+
+@media (max-width: 1000px) {
+  .rlr-audios__rejilla {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 28px 20px;
+  }
+}
+
+// Celular: una tarjeta por renglón, con la portada chica a la izquierda del título
+@media (max-width: 620px) {
+  .rlr-audios {
+    &__cabecera { justify-content: center; }
+    &__bajada { text-align: center; margin-left: auto; margin-right: auto; }
+    &__rejilla {
+      grid-template-columns: minmax(0, 1fr);
+      gap: 18px;
+      margin-top: 28px;
+    }
+  }
+
+  .rlr-audio {
+    display: grid;
+    grid-template-columns: 96px minmax(0, 1fr);
+
+    &__portada {
+      grid-row: 1;
+      align-self: start;
+      margin: 14px 0 0 14px;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    &__sello {
+      top: auto;
+      bottom: 6px;
+      left: 6px;
+      padding: 2px 6px;
+      font-size: 10px;
+    }
+
+    &__cuerpo { display: contents; }
+
+    &__titulo {
+      grid-column: 2;
+      grid-row: 1;
+      align-self: end;
+      padding: 14px 14px 0 12px;
+      font-size: 17px;
+    }
+
+    &__datos {
+      grid-column: 2;
+      grid-row: 2;
+      padding: 2px 14px 0 12px;
+      margin: 0;
+    }
+
+    &__portada { grid-row: 1 / span 2; }
+
+    &__barra,
+    &__tiempos,
+    &__controles,
+    &__guardar {
+      grid-column: 1 / -1;
+      margin-left: 14px;
+      margin-right: 14px;
+      width: auto;
+    }
+
+    &__barra { margin-top: 12px; }
+    &__guardar { margin-bottom: 14px; }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rlr-audio,
+  .rlr-audio__boton,
+  .rlr-audio__chico,
+  .rlr-audio__progreso span {
+    transition: none;
+  }
+}

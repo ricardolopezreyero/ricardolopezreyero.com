@@ -1,0 +1,75 @@
+// RLR · Índice de secciones de Descargas
+$lila-fuerte: #585dcc;
+$tinta: #232e35;
+
+.rlr-indice {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.96);
+  border-bottom: 1px solid #e3e5f6;
+  backdrop-filter: blur(8px);
+
+  &__lista {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin: 0 auto;
+    padding: 10px 16px;
+    max-width: 1200px;
+    list-style: none;
+    overflow-x: auto;
+    scrollbar-width: none;
+
+    &::-webkit-scrollbar { display: none; }
+  }
+
+  &__liga {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    padding: 0 16px;
+    border-radius: 999px;
+    border: 1px solid #e3e5f6;
+    background: #fff;
+    color: $tinta;
+    font-family: 'Red Hat Display', sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+
+    &:hover { border-color: $lila-fuerte; color: $lila-fuerte; }
+    &:focus-visible { outline: 2px solid $lila-fuerte; outline-offset: 2px; }
+
+    &--activa {
+      background: $lila-fuerte;
+      border-color: $lila-fuerte;
+      color: #fff;
+
+      &:hover { color: #fff; }
+    }
+  }
+}
+
+// Que el título de cada sección no quede tapado por la barra al saltar a ella
+#tarjetas-objetivos,
+#libros-leidos,
+#atajos-para-la-abundancia,
+#audios,
+#cuadros-explicativos,
+#habladores {
+  scroll-margin-top: 76px;
+}
+
+@media (max-width: 900px) {
+  .rlr-indice__lista {
+    justify-content: flex-start;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rlr-indice__liga { transition: none; }
+}
