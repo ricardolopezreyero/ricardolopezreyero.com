@@ -1,7 +1,7 @@
 {
   // ricardolopezreyero.com · sitio personal (React) servido desde Cloudflare · Ricardo López Reyero (RLR)
   // El sitio compilado (./build) lo entrega Cloudflare directo. El Worker solo atiende
-  // /api/* (contador de visitas, D1) y /pesados/* (archivos de más de 25 MB, R2).
+  // /api/* (contador de visitas, D1) y /pesados/* (audios y archivos de más de 25 MB, R2).
   "name": "ricardolopezreyero-com",
   "account_id": "93695b987a7460c681c06ca4df901ef4",
   "main": "worker/index.js",

@@ -2,16 +2,19 @@ import React, { lazy, Suspense } from 'react'
 import { ContentBox, Griditem, Gridwrapper, ImagePicture, RedHatDisplay } from '../../../components/Styled'
 import ImaginationImg from '../../../assets/img/Imagination_Bob_Proctor.png';
 import FrecuenciaImg from '../../../assets/img/Frecuencia_296Hz_x.png';
-import { audioFrecuencia396 as Audio1, audioImaginacionDespierta as Audio7 } from '../../../pesados';
+import {
+  audioFrecuencia396 as Audio1,
+  audioImagination as Audio2,
+  audioTheWill as Audio3,
+  audioPercepcion as Audio4,
+  audioMundoInterno as Audio5,
+  audioATusOrdenes as Audio6,
+  audioImaginacionDespierta as Audio7,
+} from '../../../pesados';
 import Thewill from '../../../assets/img/The_will_Bob_Proctor.png'
 import PercepcionImg from '../../../assets/img/Percepcion_Bob_Proctor.png'
-import Audio2 from '../../../assets/Audios/Imagination - Bob Proctor.mp3';
-import Audio3 from "../../../assets/Audios/The Will  - Bob Proctol.mp3";
-import Audio4 from "../../../assets/Audios/Percepcion - Bob Proctol.mp3";
 import Mundointerno from '../../../assets/img/Mundo_interno_vs_mundo_externo_neville_goddard.png';
-import Audio5 from "../../../assets/Audios/Mundo interno vs Mundo externo - Neville Goddard.mpeg";
 import atusordenes from '../../../assets/img/A_tus_ordenes_neville_goddard.png';
-import Audio6 from "../../../assets/Audios/A tus ordenes by Neville Goddard.m4a";
 import imaginacionDespierta from '../../../assets/img/Imaginacion_despierta_neville_goddard.png';
 import './Audios.scss'
 import { FormattedMessage } from 'react-intl';

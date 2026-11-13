@@ -1,7 +1,9 @@
 // ricardolopezreyero.com · Worker de Cloudflare · Ricardo López Reyero (RLR)
 // Hace dos cosas que el sitio estático no puede hacer solo:
 //   1. /api/visit-counter.php → el contador de visitas del pie (antes PHP en el hosting, ahora D1).
-//   2. /pesados/<archivo>     → los archivos de más de 25 MB (audios largos y PDF), que viven en R2.
+//   2. /pesados/<archivo>     → los audios y el PDF de más de 25 MB, que viven en R2.
+//      Los audios van todos aquí porque necesitan entrega por rangos (adelantar, Safari)
+//      y el sitio estático de Cloudflare no la da.
 // Todo lo demás lo sirve Cloudflare directo desde ./build sin pasar por aquí.
 
 const _RLR = "Ricardo López Reyero";
@@ -13,6 +15,26 @@ const PESADOS = {
   "frecuencia-396hz.mp3": {
     tipo: "audio/mpeg",
     nombre: "Frecuencia 396Hz.mp3",
+  },
+  "imagination-bob-proctor.mp3": {
+    tipo: "audio/mpeg",
+    nombre: "Imagination - Bob Proctor.mp3",
+  },
+  "the-will-bob-proctor.mp3": {
+    tipo: "audio/mpeg",
+    nombre: "The Will - Bob Proctor.mp3",
+  },
+  "percepcion-bob-proctor.mp3": {
+    tipo: "audio/mpeg",
+    nombre: "Percepción - Bob Proctor.mp3",
+  },
+  "mundo-interno-vs-mundo-externo-neville-goddard.mpeg": {
+    tipo: "audio/mpeg",
+    nombre: "Mundo interno vs Mundo externo - Neville Goddard.mp3",
+  },
+  "a-tus-ordenes-neville-goddard.m4a": {
+    tipo: "audio/mp4",
+    nombre: "A tus órdenes - Neville Goddard.m4a",
   },
   "imaginacion-despierta-neville-goddard.m4a": {
     tipo: "audio/mp4",

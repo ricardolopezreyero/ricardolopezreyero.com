@@ -9,9 +9,9 @@ Cloudflare. Diseño y desarrollo original: Grecia ([grecia-prog/Ricardo-Lopez-Re
 
 | Pieza | Dónde vive |
 | --- | --- |
-| Sitio (páginas, imágenes, audios y documentos de hasta 25 MB) | `src/` y `public/` → se compila a `build/` y lo sirve Cloudflare |
+| Sitio (páginas, imágenes y documentos de hasta 25 MB) | `src/` y `public/` → se compila a `build/` y lo sirve Cloudflare |
 | Contador de visitas del pie (`/api/visit-counter.php`) | `worker/index.js` + base D1 `ricardolopezreyero-visitas` |
-| Archivos de más de 25 MB (`/pesados/…`) | carpeta `pesados/` → bucket R2 `ricardolopezreyero-medios` |
+| Audios y archivos de más de 25 MB (`/pesados/…`) | carpeta `pesados/` → bucket R2 `ricardolopezreyero-medios` |
 | Configuración de Cloudflare | `wrangler.jsonc` (Worker `ricardolopezreyero-com`) |
 
 Rutas del sitio: `/`, `/descargas`, `/documentos-importantes`, `/en`, `/en/descargas`.
@@ -50,9 +50,9 @@ Compila y sube a Cloudflare. Si la terminal trae un `CLOUDFLARE_API_TOKEN` sin p
 Cada push a `main` compila el sitio en GitHub Actions para comprobar que arma; si el repositorio
 tiene el secreto `CLOUDFLARE_API_TOKEN`, además lo publica solo.
 
-## Archivos pesados
+## Audios y archivos pesados
 
-Cloudflare no acepta archivos de más de 25 MB dentro del sitio. Esos van en `pesados/` y se
-suben a R2 con `npm run pesados`. Detalle en [pesados/LEEME.md](pesados/LEEME.md).
+Los audios (necesitan entrega por rangos) y cualquier archivo de más de 25 MB (Cloudflare no
+los acepta dentro del sitio) van en `pesados/` y se suben a R2 con `npm run pesados`. Detalle en [pesados/LEEME.md](pesados/LEEME.md).
 
 <!-- RLR · Ricardo López Reyero -->

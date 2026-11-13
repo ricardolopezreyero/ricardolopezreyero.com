@@ -1,5 +1,5 @@
 #!/bin/bash
-# ricardolopezreyero.com · sube a R2 los archivos de más de 25 MB · Ricardo López Reyero (RLR)
+# ricardolopezreyero.com · sube a R2 los audios y los archivos de más de 25 MB · Ricardo López Reyero (RLR)
 # Uso: npm run pesados   (solo hace falta cuando cambia o se agrega un archivo en /pesados)
 # Si agregas uno nuevo, anótalo también en worker/index.js (PESADOS) y en src/pesados.js.
 set -euo pipefail
@@ -7,7 +7,7 @@ cd "$(dirname "$0")/.."
 
 tipo() {
   case "$1" in
-    *.mp3) echo "audio/mpeg" ;;
+    *.mp3|*.mpeg) echo "audio/mpeg" ;;
     *.m4a) echo "audio/mp4" ;;
     *.pdf) echo "application/pdf" ;;
     *.zip) echo "application/zip" ;;
