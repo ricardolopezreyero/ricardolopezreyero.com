@@ -1,0 +1,64 @@
+/* RLR · Transiciones del sitio · Ricardo López Reyero
+   1. Cambio de página: la que se va se desvanece y la nueva entra subiendo unos pixeles.
+   2. Saltos a una sección (#ancla): desplazamiento suave.
+   3. Secciones: aparecen con un desvanecido corto al llegar a la pantalla (ver aparicion.js).
+   Todo se apaga si el sistema pide menos movimiento. */
+
+.rlr-pagina {
+  display: block;
+  min-height: 60vh;
+}
+
+.rlr-pagina--entra {
+  animation: rlr-entra 0.42s cubic-bezier(0.22, 0.61, 0.36, 1) both;
+}
+
+.rlr-pagina--sale {
+  animation: rlr-sale 0.18s ease-in both;
+  pointer-events: none;
+}
+
+.rlr-pagina__espera {
+  min-height: 70vh;
+}
+
+@keyframes rlr-entra {
+  from { opacity: 0; transform: translateY(14px); }
+  to   { opacity: 1; transform: none; }
+}
+
+@keyframes rlr-sale {
+  from { opacity: 1; }
+  to   { opacity: 0; }
+}
+
+.rlr-aparece {
+  opacity: 0;
+  transform: translateY(26px);
+  transition: opacity 0.7s cubic-bezier(0.22, 0.61, 0.36, 1), transform 0.7s cubic-bezier(0.22, 0.61, 0.36, 1);
+  will-change: opacity, transform;
+}
+
+.rlr-aparece--visto {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rlr-pagina--entra,
+  .rlr-pagina--sale {
+    animation: none;
+  }
+
+  .rlr-aparece {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}

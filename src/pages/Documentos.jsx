@@ -39,7 +39,7 @@ const Documentos = () => {
 
   return (
     <ContentBox varwidth="100%" varmaxwidth="100%" vardisplay="flex">
-      <Suspense fallback={<div>Cargando...</div>}>
+      <Suspense fallback={null}>
         <Hero id="hero" />
         <ContentBox varwidth="100%" varmaxwidth="100%" vardisplay="flex" varpadding="50px 0 120px">
           <ContentBox varwidth="95%" varmaxwidth="1122px" vardisplay="flex" fdirection="row" varjustifycontent="space-around" style={{flexWrap: 'wrap', gap: '20px'}}>

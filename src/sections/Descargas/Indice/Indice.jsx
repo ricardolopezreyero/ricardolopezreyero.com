@@ -1,6 +1,6 @@
 // RLR · Índice de secciones de Descargas · Ricardo López Reyero
-// Barra que se queda arriba al bajar: un toque lleva a Tarjetas, Libros, Atajos, Audios,
-// Cuadros o Habladores, y marca en cuál vas.
+// Barra que se queda arriba al bajar: un toque lleva a Tarjetas, Libros, Atajos, Cuadros
+// o Habladores, y marca en cuál vas. (Los audios tienen su propia página: /audios.)
 import React, { useEffect, useState } from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
 import './Indice.scss';
@@ -9,7 +9,6 @@ export const SECCIONES = [
   { id: 'tarjetas-objetivos', texto: 'downloads.cards.title' },
   { id: 'libros-leidos', texto: 'downloads.books.title' },
   { id: 'atajos-para-la-abundancia', texto: 'downloads.atajos.title' },
-  { id: 'audios', texto: 'downloads.audios.title' },
   { id: 'cuadros-explicativos', texto: 'downloads.cuadros.title' },
   { id: 'habladores', texto: 'downloads.habladores.title' },
 ];

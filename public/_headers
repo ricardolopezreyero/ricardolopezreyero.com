@@ -3,6 +3,10 @@
 /static/*
   Cache-Control: public, max-age=31536000, immutable
 
+# Portadas e imágenes de los escritos: no cambian de nombre, se guardan un mes.
+/escritos/img/*
+  Cache-Control: public, max-age=2592000
+
 # El service worker y el manifiesto de archivos siempre se piden frescos.
 /sw.js
   Cache-Control: no-cache

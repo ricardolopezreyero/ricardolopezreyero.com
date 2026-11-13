@@ -91,7 +91,7 @@ const esIphoneSinInstalar = () => {
   return esIos && !instalada;
 };
 
-const Audios = ({ id }) => {
+const Audios = ({ id, sinTitulo = false }) => {
   const intl = useIntl();
   const t = useCallback(
     (clave, valores) => intl.formatMessage({ id: `downloads.audios.${clave}` }, valores),
@@ -370,20 +370,22 @@ const Audios = ({ id }) => {
   const pesoGuardado = audios.filter((a) => guardados[a.clave]).reduce((suma, a) => suma + a.bytes, 0);
 
   return (
-    <ContentBox id={id} varmaxwidth='1440px' varwidth='100%' vardisplay='flex' varpadding='20px 0 120px'>
+    <ContentBox id={id} varmaxwidth='1440px' varwidth='100%' vardisplay='flex' varpadding={sinTitulo ? '48px 0 120px' : '20px 0 120px'}>
       <div className='rlr-audios' data-author='RLR' data-k={_k.toLowerCase()} data-rev={_rev}>
-        <div className='rlr-audios__cabecera'>
+        <div className={`rlr-audios__cabecera${sinTitulo ? ' rlr-audios__cabecera--sola' : ''}`}>
+          {!sinTitulo && (
           <RedHatDisplay
-            as='h2'
-            varfontsize='26px'
-            varweight='700'
-            varcolor='#232E35'
-            vartextalign='left'
-            varpadding='0px'
-            textalignmovil='center'
-          >
-            <FormattedMessage id='downloads.audios.title' />
-          </RedHatDisplay>
+              as='h2'
+              varfontsize='26px'
+              varweight='700'
+              varcolor='#232E35'
+              vartextalign='left'
+              varpadding='0px'
+              textalignmovil='center'
+            >
+              <FormattedMessage id='downloads.audios.title' />
+            </RedHatDisplay>
+          )}
           {puedeGuardar && (
             <p className='rlr-audios__resumen' aria-live='polite'>
               <OfflinePinRounded fontSize='small' aria-hidden='true' />
@@ -393,9 +395,11 @@ const Audios = ({ id }) => {
             </p>
           )}
         </div>
-        <p className='rlr-audios__bajada'>
-          {puedeGuardar ? t('subtitle') : t('noCompatible')}
-        </p>
+        {(!sinTitulo || !puedeGuardar) && (
+          <p className='rlr-audios__bajada'>
+            {puedeGuardar ? t('subtitle') : t('noCompatible')}
+          </p>
+        )}
         {puedeGuardar && cuantos > 0 && esIphoneSinInstalar() && (
           <p className='rlr-audios__nota'>{t('notaIphone')}</p>
         )}

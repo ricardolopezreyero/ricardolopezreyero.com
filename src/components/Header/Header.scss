@@ -54,3 +54,168 @@
     justify-content: space-between;
   }
 }
+
+/* ───── RLR · menú de secciones ───── */
+.rlr-menu {
+  display: flex;
+  align-items: center;
+  font-family: 'Red Hat Display', sans-serif;
+}
+
+.rlr-menu--escritorio {
+  flex: 1;
+  justify-content: center;
+  gap: clamp(14px, 2.2vw, 34px);
+  padding: 0 16px;
+}
+
+.rlr-menu--barra {
+  gap: 14px;
+}
+
+.rlr-menu__liga {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 44px;
+  color: #585dcc;
+  font-size: 16px;
+  font-weight: 500;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: color 0.2s ease;
+}
+
+/* subrayado que crece desde el centro al pasar el cursor y se queda en la página actual */
+.rlr-menu__liga::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 6px;
+  height: 2px;
+  border-radius: 2px;
+  background: #585dcc;
+  transform: scaleX(0);
+  transition: transform 0.25s ease;
+}
+
+.rlr-menu__liga:hover::after,
+.rlr-menu__liga--activa::after {
+  transform: scaleX(1);
+}
+
+.rlr-menu__liga--activa {
+  color: #3b40a8;
+  font-weight: 700;
+}
+
+.rlr-menu__liga:focus-visible,
+.rlr-menu__fila:focus-visible,
+.rlr-menu__red:focus-visible {
+  outline: 2px solid #585dcc;
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+.rlr-menu__icono {
+  font-size: 20px !important;
+}
+
+.rlr-menu__red {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 32px;
+  min-height: 32px;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.rlr-menu__red:hover {
+  transform: translateY(-2px);
+  opacity: 0.8;
+}
+
+/* panel del menú en celular */
+.rlr-menu__panel {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 240px;
+  padding: 4px 8px 8px;
+  font-family: 'Red Hat Display', sans-serif;
+}
+
+.rlr-menu__fila {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 48px;
+  padding: 0 12px;
+  border-radius: 10px;
+  color: #232e35;
+  font-size: 17px;
+  font-weight: 500;
+  text-decoration: none;
+  transition: background-color 0.15s ease;
+}
+
+.rlr-menu__fila .rlr-menu__icono {
+  color: #585dcc;
+  font-size: 22px !important;
+}
+
+.rlr-menu__fila:hover {
+  background: #f1f2fd;
+}
+
+.rlr-menu__fila--activa {
+  background: #e7e8fb;
+  color: #3b40a8;
+  font-weight: 700;
+}
+
+.rlr-menu__pie {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 6px;
+  padding: 6px 8px 8px 4px;
+  border-top: 1px solid #e3e5f6;
+}
+
+.rlr-menu__redes {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* entre 900 y 1150 px no caben los iconos del menú: queda solo el texto */
+@media (min-width: 900px) and (max-width: 1150px) {
+  .rlr-menu--escritorio .rlr-menu__icono {
+    display: none;
+  }
+}
+
+@media (max-width: 380px) {
+  .rlr-menu--barra {
+    gap: 10px;
+  }
+  .rlr-menu--barra .rlr-menu__liga {
+    font-size: 15px;
+  }
+  .rlr-menu--barra .rlr-menu__icono {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rlr-menu__liga,
+  .rlr-menu__liga::after,
+  .rlr-menu__red,
+  .rlr-menu__fila {
+    transition: none;
+  }
+}

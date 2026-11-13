@@ -12,11 +12,14 @@ Cloudflare. Diseño y desarrollo original: Grecia ([grecia-prog/Ricardo-Lopez-Re
 | Sitio (páginas, imágenes y documentos de hasta 25 MB) | `src/` y `public/` → se compila a `build/` y lo sirve Cloudflare |
 | Contador de visitas del pie (`/api/visit-counter.php`) | `worker/index.js` + base D1 `ricardolopezreyero-visitas` |
 | Audios y archivos de más de 25 MB (`/pesados/…`) | carpeta `pesados/` → bucket R2 `ricardolopezreyero-medios` |
-| Reproductor de audios (±10 s, velocidad, repetir, guardar para oír sin internet) | `src/sections/Descargas/Audios/` |
+| Página de Audios y su reproductor (±10 s, velocidad, repetir, guardar para oír sin internet) | `src/pages/Audios.jsx` y `src/sections/Descargas/Audios/` |
 | Página disponible sin internet (service worker) | `public/sw.js`, registrado en `src/index.js` |
+| Escritos (43 textos traídos del blog anterior) | lista en `src/escritos/indice.json`, textos en `public/escritos/<slug>.json`, imágenes en `public/escritos/img/`; páginas en `src/pages/Escritos.jsx` y `Escrito.jsx` |
+| Menú | `src/components/Header/Header.js` (orden en la lista `SECCIONES`) |
+| Transiciones entre páginas y secciones | `src/transiciones.css`, `src/App.js` (`Paginas`) y `src/components/aparicion.js` |
 | Configuración de Cloudflare | `wrangler.jsonc` (Worker `ricardolopezreyero-com`) |
 
-Rutas del sitio: `/`, `/descargas`, `/documentos-importantes`, `/en`, `/en/descargas`.
+Rutas del sitio: `/`, `/escritos`, `/escritos/<escrito>`, `/audios`, `/descargas`, `/documentos-importantes`, y las mismas con `/en` delante para el sitio en inglés.
 
 ## Clonar
 
@@ -51,6 +54,14 @@ Compila y sube a Cloudflare. Si la terminal trae un `CLOUDFLARE_API_TOKEN` sin p
 
 Cada push a `main` compila el sitio en GitHub Actions para comprobar que arma; si el repositorio
 tiene el secreto `CLOUDFLARE_API_TOKEN`, además lo publica solo.
+
+## Agregar un escrito
+
+1. Agregar su ficha al inicio de `src/escritos/indice.json` (slug, título, descripción, etiquetas, fecha, minutos, portada).
+2. Crear `public/escritos/<slug>.json` con el texto en HTML sencillo: `{"slug": "...", "html": "<p>…</p>"}`.
+3. Poner la portada en `public/escritos/img/` (WebP, 16:9).
+
+`scripts/importar-escritos.py` es el script que trajo los 43 escritos del blog anterior.
 
 ## Audios y archivos pesados
 

@@ -4,7 +4,8 @@ import './Hero.scss'
 import styles from "../../../components/Styled.module.scss";
 import { FormattedMessage } from 'react-intl'
 
-const Hero = ({ id }) => {
+// RLR · los textos llegan por parámetro para usar la misma portada en Audios y Escritos
+const Hero = ({ id, encima = 'downloads.hero.aboutTitle', titulo = 'downloads.hero.title', descripcion = 'downloads.hero.description' }) => {
   return (
     <ContentBox
     id={id}
@@ -23,19 +24,20 @@ const Hero = ({ id }) => {
             <div>
               <p className={styles.AboveTitleP}>
               <FormattedMessage
-                id="downloads.hero.aboutTitle"
+                id={encima}
               />
             </p>
             </div>
           </div>
             <RedHatDisplay
+            as='h1'
             varfontsize= '48px'
             varcolor ='#fff'
             varweight ='600'
             varpadding = '0 0 32px'
             >
                 <FormattedMessage
-                id="downloads.hero.title"
+                id={titulo}
                 />
             </RedHatDisplay>
             <Roboto
@@ -46,7 +48,7 @@ const Hero = ({ id }) => {
             varfontsizemobile = '16px'
             >
                 <FormattedMessage
-                id="downloads.hero.description"
+                id={descripcion}
               />
             </Roboto>
         </ContentBox>
