@@ -1,0 +1,28 @@
+; ricardolopezreyero.com · registros DNS para dar de alta la zona en Cloudflare · RLR
+; Tomados del servidor autoritativo actual (ns1.serverhostgroup.com) el 13-nov-2026.
+; Al importar en Cloudflare: dejar SIN marcar "Proxy imported DNS records".
+; No se pasan los registros de servicio del hosting anterior (mail, webmail, cpanel, ftp, whm,
+; webdisk, autodiscover, autoconfig, cpcontacts, cpcalendars): el correo entra por Google.
+$ORIGIN ricardolopezreyero.com.
+$TTL 300
+
+; Sitio: de momento sigue en el hosting anterior; al activarse la zona pasa al Worker de Cloudflare.
+@                   IN A     15.204.101.117
+www                 IN CNAME ricardolopezreyero.com.
+
+; Escritos (sitio aparte, alojado fuera). Debe quedar en "DNS only" (nube gris).
+escritos            IN CNAME sites.ludicrous.cloud.
+
+; Correo: Google
+@                   IN MX 1  aspmx.l.google.com.
+@                   IN MX 5  alt1.aspmx.l.google.com.
+@                   IN MX 5  alt2.aspmx.l.google.com.
+@                   IN MX 10 alt3.aspmx.l.google.com.
+@                   IN MX 10 alt4.aspmx.l.google.com.
+
+; SPF y verificación de Google (idénticos a los actuales)
+@                   IN TXT   "v=spf1 ip4:15.204.101.117 include:relay.mailchannels.net ip4:173.255.252.249 +a +mx ~all"
+@                   IN TXT   "google-site-verification=Xb0zQn0BBX2m9B6PmUYKEqqTlamlyDp5_rrff1fOEVw"
+
+; DKIM del hosting anterior (se conserva tal cual)
+default._domainkey  IN TXT   "v=DKIM1; k=rsa; p=MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA05CqUQXWJ/YK9xdwRj+Mk8e/d+SLHNoFnmUTipuluH5q8I2l7mx7YaBfyIbtEIUYm2ygYLT4+4KYYV9W+oRMvxBsSp3RfxGRxegeTiH8GQp8Gs3GsM/LJjJjctQVUxagFzBADgC5pnieTRzJi/LcGeiRadXCB5pNEaBb52rMHds5xq0C9G+8YCROnlxZYWUVx" "ykc/jTYlVZkU9AEzJuWYzsHjA9AAebsXauBQnuOd9BIhQrXiLUCI2URcv9wxgrWlq5wGtvEOa6eexT+qiVoLSrPpNrkokCc6l5pnYdOcvkHx4uEOruWKUU/blXWJmhCruj+Kg1ADDZM+zAMfaEvGwIDAQAB;"
