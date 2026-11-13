@@ -1,0 +1,34 @@
+; ricardolopezreyero.com · registros del hosting anterior (ChemiCloud/cPanel) retirados de Cloudflare el 13-nov-2026 · RLR
+; Respaldo por si hiciera falta reponer alguno. Los diez registros A apuntaban todos a 15.204.101.117
+; (aquí salen con IP de Cloudflare porque estaban con proxy).
+autoconfig.ricardolopezreyero.com. 300 IN A	172.67.161.25
+autoconfig.ricardolopezreyero.com. 300 IN A	104.21.81.121
+autodiscover.ricardolopezreyero.com. 300 IN A	104.21.81.121
+autodiscover.ricardolopezreyero.com. 300 IN A	172.67.161.25
+cpanel.ricardolopezreyero.com. 300 IN	A	104.21.81.121
+cpanel.ricardolopezreyero.com. 300 IN	A	172.67.161.25
+cpcalendars.ricardolopezreyero.com. 300	IN A	104.21.81.121
+cpcalendars.ricardolopezreyero.com. 300	IN A	172.67.161.25
+cpcontacts.ricardolopezreyero.com. 300 IN A	104.21.81.121
+cpcontacts.ricardolopezreyero.com. 300 IN A	172.67.161.25
+ftp.ricardolopezreyero.com. 300	IN	A	104.21.81.121
+ftp.ricardolopezreyero.com. 300	IN	A	172.67.161.25
+mail.ricardolopezreyero.com. 300 IN	A	172.67.161.25
+mail.ricardolopezreyero.com. 300 IN	A	104.21.81.121
+webdisk.ricardolopezreyero.com.	300 IN	A	172.67.161.25
+webdisk.ricardolopezreyero.com.	300 IN	A	104.21.81.121
+webmail.ricardolopezreyero.com.	300 IN	A	172.67.161.25
+webmail.ricardolopezreyero.com.	300 IN	A	104.21.81.121
+whm.ricardolopezreyero.com. 300	IN	A	104.21.81.121
+whm.ricardolopezreyero.com. 300	IN	A	172.67.161.25
+_autodiscover._tcp.ricardolopezreyero.com. 300 IN SRV 0 0 443 cpanelemaildiscovery.cpanel.net.
+_caldav._tcp.ricardolopezreyero.com. 300 IN SRV	0 0 2079 _dc-srv.be953d09fac6._caldav._tcp.ricardolopezreyero.com.
+_caldav._tcp.ricardolopezreyero.com. 300 IN TXT	"path=/"
+_caldavs._tcp.ricardolopezreyero.com. 300 IN SRV 0 0 2080 _dc-srv.be953d09fac6._caldavs._tcp.ricardolopezreyero.com.
+_caldavs._tcp.ricardolopezreyero.com. 300 IN TXT "path=/"
+_carddav._tcp.ricardolopezreyero.com. 300 IN SRV 0 0 2079 _dc-srv.be953d09fac6._carddav._tcp.ricardolopezreyero.com.
+_carddav._tcp.ricardolopezreyero.com. 300 IN TXT "path=/"
+_carddavs._tcp.ricardolopezreyero.com. 300 IN SRV 0 0 2080 _dc-srv.be953d09fac6._carddavs._tcp.ricardolopezreyero.com.
+_carddavs._tcp.ricardolopezreyero.com. 300 IN TXT "path=/"
+_acme-challenge.ricardolopezreyero.com.	300 IN TXT "RXmtIPJi4o9d3Y5p3ZJ7d1g_iy2bdwajxdx8B1KySvc"
+_cpanel-dcv-test-record.ricardolopezreyero.com.	300 IN TXT "_cpanel-dcv-test-record=x4q_EqPvXD5dvPyldRut7N8r51RUCLnnPj8h2EZvBaRgsw92Lwmmt4hCAgQWsfhN"

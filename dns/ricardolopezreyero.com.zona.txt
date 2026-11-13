@@ -1,16 +1,16 @@
-; ricardolopezreyero.com · registros DNS para dar de alta la zona en Cloudflare · RLR
-; Tomados del servidor autoritativo actual (ns1.serverhostgroup.com) el 13-nov-2026.
-; Al importar en Cloudflare: dejar SIN marcar "Proxy imported DNS records".
-; No se pasan los registros de servicio del hosting anterior (mail, webmail, cpanel, ftp, whm,
-; webdisk, autodiscover, autoconfig, cpcontacts, cpcalendars): el correo entra por Google.
+; ricardolopezreyero.com · zona DNS en Cloudflare (nameservers josephine / luke) · RLR
+; Estado al 13-nov-2026, después de la mudanza y la limpieza. Son 13 registros.
+; Los cambios de DNS se hacen en el panel de Cloudflare; este archivo es la referencia.
 $ORIGIN ricardolopezreyero.com.
 $TTL 300
 
-; Sitio: de momento sigue en el hosting anterior; al activarse la zona pasa al Worker de Cloudflare.
+; Sitio: los dos van CON proxy (nube naranja). El Worker ricardolopezreyero-com responde por rutas
+; (ricardolopezreyero.com/* y www.ricardolopezreyero.com/*), así que la IP del A nunca se consulta.
+; No borrarlos ni pasarlos a "DNS only": el sitio depende de que sigan con proxy.
 @                   IN A     15.204.101.117
 www                 IN CNAME ricardolopezreyero.com.
 
-; Escritos (sitio aparte, alojado fuera). Debe quedar en "DNS only" (nube gris).
+; Escritos (sitio aparte, alojado fuera). Con proxy; verificado que abre así.
 escritos            IN CNAME sites.ludicrous.cloud.
 
 ; Correo: Google
@@ -20,9 +20,14 @@ escritos            IN CNAME sites.ludicrous.cloud.
 @                   IN MX 10 alt3.aspmx.l.google.com.
 @                   IN MX 10 alt4.aspmx.l.google.com.
 
-; SPF y verificación de Google (idénticos a los actuales)
-@                   IN TXT   "v=spf1 ip4:15.204.101.117 include:relay.mailchannels.net ip4:173.255.252.249 +a +mx ~all"
+; SPF (con Google agregado el 13-nov-2026; las IP y mailchannels son del hosting anterior
+; y se pueden quitar cuando se cancele) y verificación de Google
+@                   IN TXT   "v=spf1 include:_spf.google.com ip4:15.204.101.117 include:relay.mailchannels.net ip4:173.255.252.249 +a +mx ~all"
 @                   IN TXT   "google-site-verification=Xb0zQn0BBX2m9B6PmUYKEqqTlamlyDp5_rrff1fOEVw"
 
-; DKIM del hosting anterior (se conserva tal cual)
+; DKIM de Mailchimp
+k2._domainkey       IN CNAME dkim2.mcsv.net.
+k3._domainkey       IN CNAME dkim3.mcsv.net.
+
+; DKIM del hosting anterior (se puede quitar cuando se cancele)
 default._domainkey  IN TXT   "v=DKIM1; k=rsa; p=MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA05CqUQXWJ/YK9xdwRj+Mk8e/d+SLHNoFnmUTipuluH5q8I2l7mx7YaBfyIbtEIUYm2ygYLT4+4KYYV9W+oRMvxBsSp3RfxGRxegeTiH8GQp8Gs3GsM/LJjJjctQVUxagFzBADgC5pnieTRzJi/LcGeiRadXCB5pNEaBb52rMHds5xq0C9G+8YCROnlxZYWUVx" "ykc/jTYlVZkU9AEzJuWYzsHjA9AAebsXauBQnuOd9BIhQrXiLUCI2URcv9wxgrWlq5wGtvEOa6eexT+qiVoLSrPpNrkokCc6l5pnYdOcvkHx4uEOruWKUU/blXWJmhCruj+Kg1ADDZM+zAMfaEvGwIDAQAB;"
